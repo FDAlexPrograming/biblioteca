@@ -17,13 +17,19 @@
 
                 <tr>
                     <td><?=$libro['id'];?></td>
-                    <td><?=$libro['imagen'];?></td>
+                   
+                    <td>
+                        <img class="img-thumbnail" src="<?=base_url()?>/uploads/<?=$libro['imagen'];?>" width="100" alt="">
+                     </td>
+
                     <td><?=$libro['nombre'];?></td>
-                    <td><a href="<?=base_url('actualizar/'.$libro['id'])?>" class="btn btn-dark">Editar</a>
+                   
+                    <td><a href="<?=base_url('editar/'.$libro['id'])?>" class="btn btn-dark">Editar</a>
                     <a href="<?=base_url('eliminar/'.$libro['id'])?>" class="btn btn-dark">Eliminar</a></td>
                 </tr>
                 <?php endforeach;?>
 
             </tbody>
+          
         </table>
 <?=$footer?>

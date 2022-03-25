@@ -53,4 +53,5 @@ $routes->get('listar', 'LibroController::index');
 $routes->get('crear', 'LibroController::crearLibro');
 $routes->post('guardar', 'LibroController::guardarLibro');
 $routes->get('eliminar/(:num)', 'LibroController::eliminarLibro/$1');
-$routes->get('actualizar/(:num)', 'LibroController::actualizarLibro/$1');
+$routes->get('editar/(:num)', 'LibroController::editarLibro/$1');
+$routes->post('actualizar', 'LibroController::actualizarLibro/$1');

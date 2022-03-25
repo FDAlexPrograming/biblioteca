@@ -43,18 +43,35 @@ class LibroController extends Controller{
        
     }
 
-   public function eliminarLibro($id){
+   public function eliminarLibro($id=null){
         $model = new Libro();
-        $model->delete($id);
-        return redirect()->to('listar');
+        $datosLibro= $model->where('id', $id)->first();
+        $rutaImagen = '../public/uploads/'.$datosLibro['imagen'];
+        unlink($rutaImagen);
+        $model->where('id', $id)->delete($id);
+
+
+        return $this->response->redirect(site_url('listar'));
+
    }
 
-    public function actualizarLibro($id){
-          $model = new Libro();
-          $data['libro'] = $model->find($id);
-          $data['header'] = view('template/header');
-          $data['footer'] = view('template/footer');
-    
-          return view('Libros/actualizar', $data);
+   public function editarLibro($id=null){
+        $model = new Libro();
+        $datosLibro= $model->where('id', $id)->first();
+        $data['libro'] = $datosLibro;
+        $data['header'] = view('template/header');
+        $data['footer'] = view('template/footer');
+
+        return view('Libros/editar', $data);
+    }
+
+    public function actualizarLibro($id=null){
+        $model = new Libro();
+        $data=[
+            'nombre' => $this->request->getVar('nombre'),
+        ];
+        $id = $this->request->getVar('id');
+        $model->update($id, $data);
+       
     }
 }
