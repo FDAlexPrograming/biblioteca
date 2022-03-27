@@ -1,6 +1,5 @@
 <?=$header?>
-    Formulario de editar
-
+    Formulario de 
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Ingresa datos del libro</h5>
@@ -22,6 +21,7 @@
                         
                     </div>
                     <button class="btn btn-success" type="submit">Editar</button>
+                    <a href="<?=base_url('listar')?>" class="btn btn-danger">Cancelar</a>
                 </form>
             </p>
         </div>

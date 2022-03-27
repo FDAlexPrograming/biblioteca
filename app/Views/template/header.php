@@ -9,3 +9,14 @@
 <body>
     <h3>Sistema de libros</h3>
     <div class="container">
+
+    <?php if(session('mensaje'))
+    { ?>
+        <div class="alert alert-danger" role="alert">
+        <?php
+            echo session('mensaje');
+        ?>
+        </div>
+    <?php
+    }
+    ?>

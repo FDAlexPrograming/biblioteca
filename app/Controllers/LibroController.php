@@ -85,8 +85,18 @@ class LibroController extends Controller{
             'nombre' => $this->request->getVar('nombre'),
         ];
         $id = $this->request->getVar('id');
-        $model->update($id, $data);
 
+        $validacion = $this->validate([
+            'nombre' => 'required|min_length[3]',
+        ]);
+        if(!$validacion){
+            $session = session();
+            $session->setFlashdata('mensaje', 'Error al guardar el libro,revise la informacion');
+            return redirect()->back()->withInput();
+        }
+
+
+        $model->update($id, $data);
         $validacion = $this->validate([
             'imagen' => [
                 'uploaded[imagen]',

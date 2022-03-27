@@ -2,20 +2,6 @@
 
     Formulario para crear
 
-    <?php if(session('mensaje'))
-    { ?>
-        <div class="alert alert-danger" role="alert">
-        <?php
-            echo session('mensaje');
-        ?>
-        </div>
-    <?php
-    }
-    ?>
-   
-
-  
-
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Ingresa datos del libro</h5>
@@ -31,6 +17,7 @@
                         <input id="imagen" class="form-control-file" type="file" name="imagen">
                     </div>
                     <button class="btn btn-success" type="submit">Guardar</button>
+                    <a href="<?=base_url('listar')?>" class="btn btn-danger">Cancelar</a>
                 </form>
             </p>
         </div>
