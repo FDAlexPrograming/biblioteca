@@ -2,6 +2,20 @@
 
     Formulario para crear
 
+    <?php if(session('mensaje'))
+    { ?>
+        <div class="alert alert-danger" role="alert">
+        <?php
+            echo session('mensaje');
+        ?>
+        </div>
+    <?php
+    }
+    ?>
+   
+
+  
+
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Ingresa datos del libro</h5>
@@ -9,7 +23,7 @@
                 <form method="post" action="<?=base_url('guardar')?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre">
+                        <input id="nombre" value="<?=old('nombre')?>" class="form-control" type="text" name="nombre">
                     </div>
 
                     <div class="form-group">

@@ -5,15 +5,15 @@ use CodeIgniter\Controller;
 use App\Models\Libro;
 
 class LibroController extends Controller{
+
     
     public function index(){
+     
         $model = new Libro();
         $data['libros'] = $model->orderBy('id', 'ASC')->findAll();
-        
+    
         $data['header'] = view('template/header');
         $data['footer'] = view('template/footer');
-
-
         return view('Libros/listar', $data);
     }
 
@@ -26,6 +26,20 @@ class LibroController extends Controller{
 
     public function guardarLibro(){
         $model = new Libro();
+
+        $validacion = $this->validate([
+            'nombre' => 'required|min_length[3]',
+            'imagen' =>[
+                'uploaded[imagen]',
+                'mime_in[imagen,image/jpg,image/jpeg,image/png]',
+                'max_size[imagen,1024]'
+            ]
+        ]);
+        if(!$validacion){
+            $session = session();
+            $session->setFlashdata('mensaje', 'Error al guardar el libro,revise la informacion');
+            return redirect()->back()->withInput();
+        }
       
         $nombre = $this->request->getVar('nombre');
         if ($imagen = $this->request->getFile('imagen')){
